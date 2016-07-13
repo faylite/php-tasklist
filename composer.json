@@ -1,0 +1,15 @@
+{
+    "name": "faylite/task-list",
+    "description": "A simple task list app",
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Faylite",
+            "email": "benvev95@gmail.com"
+        }
+    ],
+    "require": {}
+}
