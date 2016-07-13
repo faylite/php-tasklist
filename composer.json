@@ -11,5 +11,10 @@
             "email": "benvev95@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Faylite\\TaskList\\": "src/"
+        }
+    }
 }
