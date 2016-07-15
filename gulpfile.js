@@ -48,9 +48,18 @@ gulp.task('bower', function() {
 });
 
 // Setup fontawesome
-gulp.task('icons', function() {
+gulp.task('icons', ['icons:fonts', 'icons:css']);
+
+// Setup fontawesome fonts
+gulp.task('icons:fonts', function() {
 	return gulp.src('./bower_components/font-awesome/fonts/**.*')
 		.pipe(gulp.dest('./public/fonts'));
+});
+
+// Setup fontawesome css
+gulp.task('icons:css', function() {
+	return gulp.src('./bower_components/font-awesome/css/**.*')
+		.pipe(gulp.dest('./public/css'));
 });
 
 // Setup bootstrap
