@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var bower = require('gulp-bower');
 
 // Runs other tasks
-gulp.task('default', ['sass', 'bower', 'icons', 'bootstrap']);
+gulp.task('default', ['sass', 'bower', 'icons', 'bootstrap', 'angular']);
 
 // Compiles sass in the assets directory into css and puts it in the public css directory
 gulp.task('sass', function() {
@@ -51,4 +51,10 @@ gulp.task('bootstrap:js', function() {
 gulp.task('bootstrap:icons', function() {
 	return gulp.src('./bower_components/bootstrap/dist/fonts/**.*')
 		.pipe(gulp.dest('./public/fonts'));
+});
+
+// Angular setup
+gulp.task('angular', function() {
+	return gulp.src('./bower_components/angular/angular.min.js')
+		.pipe(gulp.dest('./public/js'));
 });
