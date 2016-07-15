@@ -2,3 +2,6 @@
 /node_modules/
 public/css/main.css
 bower_components/
+/public/css/
+/public/js/
+/public/fonts/
