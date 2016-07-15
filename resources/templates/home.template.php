@@ -7,6 +7,7 @@
 
 		<title>Task List</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/main.css" />
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -25,7 +26,7 @@
 		</header>
 			<div ng-controller="TasksController as tasksController">
 				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="task in tasksController.tasks">
+					<li class="list-group-item" ng-repeat="task in tasks">
 						<h1>{{ task.title }}</h1>
 						<p>{{ task.description }}</p>
 					</li>
