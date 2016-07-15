@@ -3,6 +3,9 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var bower = require('gulp-bower');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var reanme = require('gulp-rename');
 
 // Runs other tasks
 gulp.task('default', ['sass', 'bower', 'icons', 'bootstrap', 'angular']);
@@ -17,6 +20,16 @@ gulp.task('sass', function() {
 // Watches the sass directory and calls the sass task when there were changes
 gulp.task('sass:watch', function () {
 	gulp.watch('./sass/**/*.scss', ['sass']);
+});
+
+// Watches the js directory
+gulp.task('scripts', function() {
+	return gulp.src('./resources/assets/js/*.js')
+		.pipe(concat('app.js'))
+		.pipe(gulp.dest('./public/js'))
+		.pipe(rename('app.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('./public/js'));
 });
 
 // Runs bower install
