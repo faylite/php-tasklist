@@ -1,14 +1,15 @@
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var bower = require('gulp-bower');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var reanme = require('gulp-rename');
+var gulp = require('gulp'),
+	sass = require('gulp-sass'),
+	bower = require('gulp-bower'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify'),
+	rename = require('gulp-rename'),
+	pump = require('pump');
 
 // Runs other tasks
-gulp.task('default', ['sass', 'bower', 'icons', 'bootstrap', 'angular']);
+gulp.task('default', ['sass', 'bower', 'icons', 'bootstrap', 'angular', 'scripts']);
 
 // Compiles sass in the assets directory into css and puts it in the public css directory
 gulp.task('sass', function() {
@@ -19,17 +20,25 @@ gulp.task('sass', function() {
 
 // Watches the sass directory and calls the sass task when there were changes
 gulp.task('sass:watch', function () {
-	gulp.watch('./sass/**/*.scss', ['sass']);
+	gulp.watch(['./resources/assets/sass/**/*.scss', './resources/assets/sass/*.scss'], ['sass']);
 });
 
-// Watches the js directory
+// Concats all the js in the the js directory
 gulp.task('scripts', function() {
-	return gulp.src('./resources/assets/js/*.js')
+	return gulp.src(['./resources/assets/js/*.js', './resources/assets/js/**/*.js'])
 		.pipe(concat('app.js'))
-		.pipe(gulp.dest('./public/js'))
-		.pipe(rename('app.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('./public/js'));
+});
+
+// Copies dev scripts into public js directory
+gulp.task('scripts:dev', function() {
+	return gulp.src(['./resources/assets/js/*.js', './resources/assets/js/**/*.js'])
+		.pipe(gulp.dest('./public/js'));
+});
+
+// Watches the scripts directory for changes and calls scripts:dev on change
+gulp.task('scripts:watch', function() {
+	gulp.watch(['./resources/assets/js/**/*.js', './resources/assets/js/**/*.js'], ['scripts:dev']);
 });
 
 // Runs bower install
