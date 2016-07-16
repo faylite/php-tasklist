@@ -4,9 +4,43 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9315c96be0a3a600fa904a6c957ca8c8",
-    "content-hash": "cc94469618306a1414e6af4d8c95a228",
-    "packages": [],
+    "hash": "5fed437fee7e7afb0fc0e43d2f6e8222",
+    "content-hash": "eb59f69cec976f809b2b5002c839bb77",
+    "packages": [
+        {
+            "name": "piwik/ini",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/piwik/component-ini.git",
+                "reference": "bd2711ba4d5e20e4ca09b6829dc2831576b59dc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/piwik/component-ini/zipball/bd2711ba4d5e20e4ca09b6829dc2831576b59dc3",
+                "reference": "bd2711ba4d5e20e4ca09b6829dc2831576b59dc3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "athletic/athletic": "0.1.*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Piwik\\Ini\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "time": "2016-01-14 21:13:33"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
