@@ -2,5 +2,8 @@ RewriteEngine on
 
 # Don't rewrite if the request is a file
 RewriteCond %{REQUEST_FILENAME} !-f
+# Don't rewrite if the request is a directory
+RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^ index.php [QSA,L]
+# RewriteRule ^ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
