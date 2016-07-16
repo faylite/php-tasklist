@@ -3,34 +3,31 @@
 // Composer auto-loader
 require __DIR__ . '/../vendor/autoload.php';
 
-$request = explode('/', $_SERVER['REQUEST_URI']);
+// Create a constant for the root directory
+define('ROOT_DIR', __DIR__ . '/../');
 
-if ($request[1] == 'api')
-{
-	if ($request[2] == 'v1' && $request[3] == 'tasks')
-	{
-		$json = '{"tasks": [
-			{ "title": "Task #1", "description": "YAY, it finally works :D" },
-			{ "title": "Task #2", "description": "Task description....." },
-			{ "title": "Task #3", "description": "Task description....." },
-			{ "title": "Task #4", "description": "Task description....." },
-			{ "title": "Task #5", "description": "Task description....." },
-			{ "title": "Task #6", "description": "Task description....." },
-			{ "title": "Task #7", "description": "Task description....." },
-			{ "title": "Task #8", "description": "Task description....." },
-			{ "title": "Task #9", "description": "Task description....." },
-			{ "title": "Task #10", "description": "Task description....." },
-			{ "title": "Task #11", "description": "Task description....." },
-			{ "title": "Task #12", "description": "Task description....." },
-			{ "title": "Task #13", "description": "Task description....." },
-			{ "title": "Task #14", "description": "Task description....." },
-			{ "title": "Task #15", "description": "Task description....." }
-		]}';
-		echo $json;
+use Faylite\TaskList\Router\Router;
+use Faylite\TaskList\Router\Route;
 
-	}
-}
-else
-{
-	require __DIR__ . '/../resources/templates/home.template.php';
-}
+// Initilize a ini file reader
+$iniReader = new Piwik\Ini\IniReader();
+// Read ini file into $config array
+$config = $iniReader->readFile('../config.ini');
+// Store database config in a new array for ease of access
+$db = $config['Database'];
+
+/*
+// Remove ? get parameters from request url, use query variable for that
+$request = strstr($_SERVER['REQUEST_URI'], '?', true);
+// Trim trailing slashes
+$request = trim($request, '/');
+// Sanitize url
+$request = filter_var($request, FILTER_SANITIZE_URL);
+// Explode url into array
+$request = explode('/', $request);
+ */
+
+$router = new Router();
+$router->addRoute(new Route('GET', '', 'TasksList'));
+$router->addRoute(new Route('GET', 'api/v1/tasks', 'TasksApi'));
+$router->execute();
