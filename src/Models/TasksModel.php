@@ -31,15 +31,43 @@ class TasksModel implements Model
 	 */
 	public function putData($data)
 	{
-		
+		// Create a new DB connection
+		$db = $GLOBALS['db'];
+		$connection = new \mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+
+		// Prepare statement
+		$statement = $connection->prepare('UPDATE tasks SET title=?, description=? WHERE task_id=?');
+		// Bind parameters
+		$statement->bind_Param('ssi', $data['title'], $data['description'], $data['id']);
+
+		// Execute statement
+		$statement->execute();
+			
+		// Close the connection
+		$statement->close();
+		$connection->close();
 	}
 
 	/**
-	 * Deletes the data requested in the $data array
+	 * Deletes the task with the requested id
 	 */
-	public function deleteData($data)
+	public function deleteData($id)
 	{
+		// Create a new DB connection
+		$db = $GLOBALS['db'];
+		$connection = new \mysqli($db['host'], $db['username'], $db['password'], $db['database']);
 		
+		// Prepare statement
+		$statement = $connection->prepare('DELETE FROM tasks WHERE task_id=?');
+		// Bind parameters
+		$statement->bind_Param('i', $id);
+		
+		// Execute statement
+		$statement->execute();
+			
+		// Close the connection
+		$statement->close();
+		$connection->close();
 	}
 
 	/**
@@ -52,15 +80,15 @@ class TasksModel implements Model
 		$connection = new \mysqli($db['host'], $db['username'], $db['password'], $db['database']);
 		
 		// Prepare statement
-		$statement = $connection->prepare('INSERT INTO tasks (title, description) VALUES (:title, :description)');
+		$statement = $connection->prepare('INSERT INTO tasks (title, description) VALUES (?, ?)');
 		// Bind parameters
-		$statement->bindParam(':title', $data['title']);
-		$statement->bindParam(':description', $data['description']);
+		$statement->bind_Param('ss', $data['title'], $data['description']);
 		
 		// Execute statement
 		$statement->execute();
 			
 		// Close the connection
 		$statement->close();
+		$connection->close();
 	}
 }
