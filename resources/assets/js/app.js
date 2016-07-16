@@ -3,7 +3,7 @@ var app = angular.module('taskList', []);
 app.controller('TasksController', function($scope, $http, $timeout) {
 	var updateList = function() {
 		$http({
-			method: 'GET', url: '/request'
+			method: 'GET', url: '/api/v1/tasks'
 		}).then(function successCallback(response) {
 			$scope.tasks = response.data.tasks;
 
