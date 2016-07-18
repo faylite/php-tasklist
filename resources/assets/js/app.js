@@ -27,8 +27,15 @@ app.controller('TasksController', function($scope, $http, $timeout) {
 	
 	// Updates a task with the new specified title and description
 	$scope.editTask = function(taskTitle, taskDescription) {
-		Materialize.toast('Task updated!', 4000);
-		$scope.updateList();
+		$http({
+			method: 'POST',
+			url: '/api/v1/tasks/',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			data: $.param({ action: 'update', title: taskTitle, description: taskDescription })
+		}).then(function successCallback(response) {
+			Materialize.toast('Task updated!', 4000);
+			$scope.updateList();
+		});
 	};
 	
 	// Marks a task as done
