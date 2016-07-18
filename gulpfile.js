@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 	pump = require('pump');
 
 // Runs other tasks
-gulp.task('default', ['sass', 'bower', 'icons', 'bootstrap', 'angular', 'scripts']);
+gulp.task('default', ['sass', 'bower', 'icons', 'materialize', 'angular', 'scripts']);
 
 // Compiles sass in the assets directory into css and puts it in the public css directory
 gulp.task('sass', function() {
@@ -64,26 +64,10 @@ gulp.task('icons:css', function() {
 		.pipe(gulp.dest('./public/css'));
 });
 
-// Setup bootstrap
-gulp.task('bootstrap', ['bootstrap:css', 'bootstrap:js', 'bootstrap:icons']);
-
-// Bootstrap CSS
-gulp.task('bootstrap:css', function() {
-	var assets = './bower_components/bootstrap-sass/assets/';
-	return gulp.src('./bower_components/bootstrap/dist/css/bootstrap.min.css')
-		.pipe(gulp.dest('./public/css'));
-});
-
-// Bootstrap JS
-gulp.task('bootstrap:js', function() {
-	return gulp.src('./bower_components/bootstrap/dist/js/bootstrap.min.js')
-		.pipe(gulp.dest('./public/js'));
-});
-
-// Bootstrap icons
-gulp.task('bootstrap:icons', function() {
-	return gulp.src('./bower_components/bootstrap/dist/fonts/**.*')
-		.pipe(gulp.dest('./public/fonts'));
+// Materialize 
+gulp.task('materialize', function() {
+	return gulp.src('./bower_components/Materialize/dist/**/*')
+		.pipe(gulp.dest('./public'));
 });
 
 // Angular setup

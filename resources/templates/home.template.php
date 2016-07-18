@@ -2,53 +2,47 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Task List</title>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" type="text/css" href="/css/materialize.min.css" media="screen,projection" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/main.css" />
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
 	</head>
-	<body>
+	<body ng-app="taskList">
 		<script src="js/angular.min.js"></script>
 		<script src="js/app.js"></script>
-		<div ng-app="taskList" class="container"/>
-		<header>
-			<h1>Task List</h1>
-		</header>
-			<div ng-controller="TasksController as tasksController">
-				<ul class="list-group">
-					<li class="list-group-item" ng-repeat="task in tasks">
-						<h1>{{ task.title }}</h1>
-						<p>{{ task.description }}</p>
-						<div class="btn-group pull-right" role="group" aria-label="...">
-							<button type="button" class="btn btn-warning" ng-click="">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								Edit
-							</button>
-							<button type="button" class="btn btn-danger" ng-click="deleteTask(task.task_id)">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-								Delete
-							</button>
-							<button type="button" class="btn btn-success" ng-click="">
-								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-								Done
-							</button>
+		<div class="container"/>
+			<header>
+				<h1>Task List</h1>
+			</header>
+			<div class="row" ng-controller="TasksController as tasksController">
+				<div class="col s12" ng-repeat="task in tasks">
+					<div class="card">
+						<div class="card-content">
+							<span class="card-title">{{ task.title }}</span>
+							<p>{{ task.description }}</p>
 						</div>
-						<div class="clearfix"></div>
-					</li>
-				</ul> 
+						<div class="card-action green">
+							<a href="" class="white-text activator">Edit</a>
+							<a href="" class="white-text">Delete</a>
+							<a href="" class="white-text right">Done</a>
+						</div>
+						<div class="card-reveal">
+							<span class="card-title activator">{{ task.title }}<i class="material-icons right">close</i></span>
+							<p>Form goes here</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="fixed-action-btn" style="bottom: 45px; right; 24px;">
+				<a class="btn-floating btn-large red">
+					<i class="material-icons">add</i>
+				</a>
 			</div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<script src="/js/materialize.min.js"></script>
 	</body>
 </html>
