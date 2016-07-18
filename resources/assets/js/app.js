@@ -40,9 +40,17 @@ app.controller('TasksController', function($scope, $http) {
 	
 	// Marks a task as done
 	$scope.markDone = function(taskID) {
-		Materialize.toast('Task marked as done!', 4000);
-		$scope.updateList();
+		$http({
+			method: 'POST',
+			url: '/api/v1/tasks/',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			data: $.param({ action: 'done', id: taskID })
+		}).then(function successCallback(response) {
+			Materialize.toast('Marked as done!', 4000);
+			$scope.updateList();
+		});
 	}
+	
 	
 	// Listener for update event from other controllers
 	$scope.$on('update', function(event, args) { $scope.updateList(); });

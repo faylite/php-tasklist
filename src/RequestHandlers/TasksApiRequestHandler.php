@@ -23,6 +23,8 @@ class TasksApiRequestHandler implements  RequestHandler
 					$this->post();
 				elseif ($_POST['action'] == 'update')
 					$this->put();
+				elseif ($_POST['action'] == 'done')
+					$this->markDone();
 				else {
 					header('HTTP/1.1 400 Bad Request');
 					die();
@@ -52,9 +54,16 @@ class TasksApiRequestHandler implements  RequestHandler
 		$tasksModel = new \Faylite\TaskList\Models\TasksModel();
 		$data = array(
 			'title' => $_POST['title'],
-			'description' => $_POST['description']
+			'description' => $_POST['description'],
+			'status' => 'todo'
 		);
 		$tasksModel->postData($data);
+	}
+
+	public function markDone()
+	{
+		$tasksModel = new \Faylite\TaskList\Models\TasksModel();
+		$tasksModel->markDone($_POST['id']);
 	}
 
 	public function delete()
@@ -63,7 +72,7 @@ class TasksApiRequestHandler implements  RequestHandler
 		$tasksModel->deleteData($_POST['id']);
 	}
 
-	public function  put()
+	public function put()
 	{
 		$tasksModel = new \Faylite\TaskList\Models\TasksModel();
 		$data = array(

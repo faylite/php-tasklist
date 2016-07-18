@@ -70,6 +70,25 @@ class TasksModel implements Model
 		$connection->close();
 	}
 
+	public function markDone($id)
+	{
+		// Create a new DB connection
+		$db = $GLOBALS['db'];
+		$connection = new \mysqli($db['host'], $db['username'], $db['password'], $db['database']);
+
+		// Prepare statement
+		$statement = $connection->prepare('UPDATE tasks SET status="done" WHERE task_id=?');
+		// Bind parameters
+		$statement->bind_Param('i', $id);
+
+		// Execute statement
+		$statement->execute();
+			
+		// Close the connection
+		$statement->close();
+		$connection->close();
+	}
+
 	/**
 	 * Posts/Creates the data requested in the $data array
 	 */
@@ -80,9 +99,9 @@ class TasksModel implements Model
 		$connection = new \mysqli($db['host'], $db['username'], $db['password'], $db['database']);
 		
 		// Prepare statement
-		$statement = $connection->prepare('INSERT INTO tasks (title, description) VALUES (?, ?)');
+		$statement = $connection->prepare('INSERT INTO tasks (title, description, status) VALUES (?, ?, ?)');
 		// Bind parameters
-		$statement->bind_Param('ss', $data['title'], $data['description']);
+		$statement->bind_Param('sss', $data['title'], $data['description'], $data['status']);
 		
 		// Execute statement
 		$statement->execute();

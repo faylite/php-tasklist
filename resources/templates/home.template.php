@@ -19,15 +19,31 @@
 			</header>
 			<div class="row" ng-controller="TasksController as tasksController">
 				<div class="col s12" ng-repeat="task in tasks">
-					<div class="card">
+					<div class="card" ng-if="task.status != 'done'">
+						<div class="card-content">
+							<span class="card-title">{{ task.title }}</span>
+							<p>{{ task.description }}</p>
+						</div>
+						<div class="card-action blue-grey">
+							<a href="" class="white-text activator">Edit</a>
+							<a href="" class="white-text" ng-click="deleteTask(task.task_id)">Delete</a>
+							<a href="" class="white-text right" ng-click="markDone(task.task_id)">Done</a>
+						</div>
+						<div class="card-reveal">
+							<span class="card-title activator">{{ task.title }}<i class="material-icons right">close</i></span>
+							<p>Form goes here</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12" ng-repeat="task in tasks">
+					<div class="card" ng-if="task.status == 'done'">
 						<div class="card-content">
 							<span class="card-title">{{ task.title }}</span>
 							<p>{{ task.description }}</p>
 						</div>
 						<div class="card-action green">
 							<a href="" class="white-text activator">Edit</a>
-							<a href="" class="white-text" ng-click="deleteTask(task.task_id)">Delete</a>
-							<a href="" class="white-text right" ng-click="markDone(task.task_id)">Done</a>
+							<a href="" class="white-text right" ng-click="deleteTask(task.task_id)">Delete</a>
 						</div>
 						<div class="card-reveal">
 							<span class="card-title activator">{{ task.title }}<i class="material-icons right">close</i></span>
@@ -71,6 +87,7 @@
 		<script>
 		$(document).ready(function() {
 			$('.modal-trigger').leanModal();
+			$('ui.tabs').tabs();
 		});
 		</script>
 	</body>
