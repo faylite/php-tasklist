@@ -23,7 +23,7 @@ class TasksModel implements Model
 
 		$connection->close();
 
-		return (!empty($rows)) ? json_encode($rows) : 'No Tasks';
+		return (!empty($rows)) ? json_encode($rows) : '';
 	}
 
 	/**
