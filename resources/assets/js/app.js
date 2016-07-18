@@ -14,8 +14,15 @@ app.controller('TasksController', function($scope, $http, $timeout) {
 	
 	// Deletes the task with the requested ID
 	$scope.deleteTask = function(taskID) {
-		Materialize.toast('Task deleted!', 4000);
-		$scope.updateList();
+		$http({
+			method: 'POST',
+			url: '/api/v1/tasks/',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			data: $.param({ action: 'delete', id: taskID })
+		}).then(function successCallback(response) {
+			Materialize.toast('Task deleted!', 4000);
+			$scope.updateList();
+		});
 	};
 	
 	// Updates a task with the new specified title and description
