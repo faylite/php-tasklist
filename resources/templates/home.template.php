@@ -29,6 +29,21 @@
 					<li class="list-group-item" ng-repeat="task in tasks">
 						<h1>{{ task.title }}</h1>
 						<p>{{ task.description }}</p>
+						<div class="btn-group pull-right" role="group" aria-label="...">
+							<button type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+								Edit
+							</button>
+							<button type="button" class="btn btn-danger">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								Delete
+							</button>
+							<button type="button" class="btn btn-success">
+								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+								Done
+							</button>
+						</div>
+						<div class="clearfix"></div>
 					</li>
 				</ul> 
 			</div>
