@@ -30,15 +30,15 @@
 						<h1>{{ task.title }}</h1>
 						<p>{{ task.description }}</p>
 						<div class="btn-group pull-right" role="group" aria-label="...">
-							<button type="button" class="btn btn-default">
-								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+							<button type="button" class="btn btn-warning" ng-click="">
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 								Edit
 							</button>
-							<button type="button" class="btn btn-danger">
+							<button type="button" class="btn btn-danger" ng-click="deleteTask(task.task_id)">
 								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 								Delete
 							</button>
-							<button type="button" class="btn btn-success">
+							<button type="button" class="btn btn-success" ng-click="">
 								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
 								Done
 							</button>
