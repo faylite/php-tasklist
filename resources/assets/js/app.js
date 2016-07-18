@@ -1,6 +1,6 @@
 var app = angular.module('taskList', []);
 
-app.controller('TasksController', function($scope, $http, $timeout) {
+app.controller('TasksController', function($scope, $http) {
 	// Gets the list of tasks from the server
 	$scope.updateList = function() {
 		$http({
@@ -43,4 +43,26 @@ app.controller('TasksController', function($scope, $http, $timeout) {
 		Materialize.toast('Task marked as done!', 4000);
 		$scope.updateList();
 	}
+	
+	// Listener for update event from other controllers
+	$scope.$on('update', function(event, args) { $scope.updateList(); });
+});
+
+// Controller for the new task creation form
+app.controller('NewTaskController', function($scope, $rootScope, $http) {
+	$scope.title;
+	$scope.description;
+	
+	$scope.createTask = function() {
+		$http({
+			method: 'POST',
+			url: '/api/v1/tasks/',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			data: $.param({ action: 'create', title: $scope.title, description: $scope.description })
+		}).then(function successCallback(response) {
+			Materialize.toast('Created new task', 4000);
+			// Notify other controllers to update the list
+			$rootScope.$broadcast('update', null);
+		});
+	};
 });

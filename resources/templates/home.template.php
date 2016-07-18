@@ -36,13 +36,42 @@
 					</div>
 				</div>
 			</div>
-			<div class="fixed-action-btn" style="bottom: 45px; right; 24px;">
-				<a class="btn-floating btn-large red">
-					<i class="material-icons">add</i>
-				</a>
+		</div>
+		<div class="fixed-action-btn modal-trigger" href="#newtaskmodal" style="bottom: 45px; right: 24px;">
+			<a class="btn-floating btn-large red">
+				<i class="large material-icons">add</i>
+			</a>
+		</div>
+		<div id="newtaskmodal" class="modal" ng-controller="NewTaskController">
+			<div class="modal-content">
+				<div class="row">
+					<form class="col s12">
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="title" ng-model="title" type="text" length="50">
+								<label for="title">Title</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<textarea id="description" ng-model="description" class="materialize-textarea"></textarea>
+								<label for="description">Description</label>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a ng-click="createTask()" class=" modal-action modal-close waves-effect waves-green btn-flat">Create</a>
+				<a ng-click="" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
 			</div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="/js/materialize.min.js"></script>
+		<script>
+		$(document).ready(function() {
+			$('.modal-trigger').leanModal();
+		});
+		</script>
 	</body>
 </html>
