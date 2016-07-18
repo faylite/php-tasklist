@@ -26,8 +26,8 @@
 						</div>
 						<div class="card-action green">
 							<a href="" class="white-text activator">Edit</a>
-							<a href="" class="white-text">Delete</a>
-							<a href="" class="white-text right">Done</a>
+							<a href="" class="white-text" ng-click="deleteTask(task.task_id)">Delete</a>
+							<a href="" class="white-text right" ng-click="markDone(task.task_id)">Done</a>
 						</div>
 						<div class="card-reveal">
 							<span class="card-title activator">{{ task.title }}<i class="material-icons right">close</i></span>
