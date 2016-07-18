@@ -41,6 +41,8 @@ gulp.task('scripts:watch', function() {
 	gulp.watch(['./resources/assets/js/**/*.js', './resources/assets/js/**/*.js'], ['scripts:dev']);
 });
 
+gulp.task('watch', ['sass:watch', 'scripts:watch']);
+
 // Runs bower install
 gulp.task('bower', function() {
 	return bower()
