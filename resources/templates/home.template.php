@@ -25,7 +25,7 @@
 				<div class="row" ng-controller="TasksController as tasksController">
 					<div class="col s12" ng-repeat="task in tasks">
 						<div class="card" ng-if="task.status != 'done'">
-							<div class="card-content">
+							<div class="card-content flow-text">
 								<span class="card-title">{{ task.title }}</span>
 								<p>{{ task.description }}</p>
 							</div>
@@ -42,7 +42,7 @@
 					</div>
 					<div class="col s12" ng-repeat="task in tasks">
 						<div class="card" ng-if="task.status == 'done'">
-							<div class="card-content">
+							<div class="card-content flow-text">
 								<span class="card-title"><strike>{{ task.title }}</strike></span>
 								<p><strike>{{ task.description }}</strike></p>
 							</div>
