@@ -5,7 +5,7 @@
  *
  * Used for classes that returns data to http requests
  */
-namespace Faylite\TaskList\;
+namespace Faylite\TaskList\Api;
 
 interface ApiRequestHandler
 {
