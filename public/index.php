@@ -27,12 +27,9 @@ $request = explode('/', $request);
  */
 
 $app = new App();
+$app->get('/', [ Faylite\TaskList\Controllers\HomeController::class, 'index' ]);
+
 // $router->addRoute(new Route('GET', '', 'TasksList'));
-$app->get('/', function() {
-	echo 'Home';
-});
-$app->get('/test', function() {
-	echo 'test';
-});
 // $router->addRoute(new Route('GET', 'api/v1/tasks', 'TasksApi'));
+
 $app->run();
