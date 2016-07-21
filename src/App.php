@@ -66,6 +66,14 @@ class App {
 
 	public function process($callable)
 	{
+		// If the callable is an array
+		if (is_array($callable)) {
+			// Check if the entry at index 0 is an object, if not instantiate it. 
+			if (!is_object($callable[0])) {
+				$callable[0] = new $callable[0];
+			}
+			return call_user_func($callable, $this->response);
+		}
 		return $callable($this->response);
 	}
 
