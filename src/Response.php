@@ -31,7 +31,7 @@ class Response
 	/**
 	 * Returns the body for the response
 	 */
-	public funciton getBody()
+	public function getBody()
 	{
 		return $this->body;
 	}
