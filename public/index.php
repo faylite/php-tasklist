@@ -6,8 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 // Create a constant for the root directory
 define('ROOT_DIR', __DIR__ . '/../');
 
-use Faylite\TaskList\Router\Router;
-use Faylite\TaskList\Router\Route;
+use Faylite\TaskList\App;
 
 // Initilize a ini file reader
 $iniReader = new Piwik\Ini\IniReader();
@@ -27,7 +26,13 @@ $request = filter_var($request, FILTER_SANITIZE_URL);
 $request = explode('/', $request);
  */
 
-$router = new Router();
-$router->addRoute(new Route('GET', '', 'TasksList'));
-$router->addRoute(new Route('GET', 'api/v1/tasks', 'TasksApi'));
-$router->execute();
+$app = new App();
+// $router->addRoute(new Route('GET', '', 'TasksList'));
+$app->get('/', function() {
+	echo 'Home';
+});
+$app->get('/test', function() {
+	echo 'test';
+});
+// $router->addRoute(new Route('GET', 'api/v1/tasks', 'TasksApi'));
+$app->run();
