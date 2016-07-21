@@ -52,9 +52,13 @@ class App {
 		try {
 			$response = $this->router->getResponse();
 		} catch (RouteNotFoundException $e) {
-			// TODO: 404
+			// TODO: Better 404
+			echo '404 Page Not Found';
+			die();
 		} catch (MethodNotAllowedException $e) {
-			// TODO: 403
+			// TODO: Better 405
+			echo '405 Method not allowed';
+			die();
 		}
 
 		return $this->respond($this->process($response));
