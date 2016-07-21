@@ -4,7 +4,7 @@ app.controller('TasksController', function($scope, $http) {
 	// Gets the list of tasks from the server
 	$scope.updateList = function() {
 		$http({
-			method: 'GET', url: '/api/v1/tasks/'
+			method: 'GET', url: '/api/v1/tasks'
 		}).then(function successCallback(response) {
 			$scope.tasks = response.data;
 		});
@@ -16,7 +16,7 @@ app.controller('TasksController', function($scope, $http) {
 	$scope.deleteTask = function(taskID) {
 		$http({
 			method: 'POST',
-			url: '/api/v1/tasks/',
+			url: '/api/v1/tasks',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			data: $.param({ action: 'delete', id: taskID })
 		}).then(function successCallback(response) {
@@ -29,7 +29,7 @@ app.controller('TasksController', function($scope, $http) {
 	$scope.editTask = function(taskTitle, taskDescription) {
 		$http({
 			method: 'POST',
-			url: '/api/v1/tasks/',
+			url: '/api/v1/tasks',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			data: $.param({ action: 'update', title: taskTitle, description: taskDescription })
 		}).then(function successCallback(response) {
@@ -42,7 +42,7 @@ app.controller('TasksController', function($scope, $http) {
 	$scope.markDone = function(taskID) {
 		$http({
 			method: 'POST',
-			url: '/api/v1/tasks/',
+			url: '/api/v1/tasks',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			data: $.param({ action: 'done', id: taskID })
 		}).then(function successCallback(response) {
@@ -64,7 +64,7 @@ app.controller('NewTaskController', function($scope, $rootScope, $http) {
 	$scope.createTask = function() {
 		$http({
 			method: 'POST',
-			url: '/api/v1/tasks/',
+			url: '/api/v1/tasks',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			data: $.param({ action: 'create', title: $scope.title, description: $scope.description })
 		}).then(function successCallback(response) {
