@@ -2,6 +2,9 @@
 
 namespace Faylite\TaskList;
 
+use Faylite\TaskList\Exceptions\RouteNotFoundException;
+use Faylite\TaskList\Exceptions\MethodNotAllowedException;
+
 class Router 
 {
 	/**
