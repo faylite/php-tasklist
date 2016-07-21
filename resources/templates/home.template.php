@@ -26,7 +26,7 @@
 					<div class="col s12" ng-repeat="task in tasks">
 						<div class="card" ng-if="task.status != 'done'">
 							<div class="card-content flow-text">
-								<span class="card-title">{{ task.title }}</span>
+								<span class="card-title"><b>{{ task.title }}</b></span>
 								<p>{{ task.description }}</p>
 							</div>
 							<div class="card-action green">
@@ -35,7 +35,7 @@
 								<a href="" class="white-text waves-effect btn-flat right" ng-click="markDone(task.task_id)">Done</a>
 							</div>
 							<div class="card-reveal">
-								<span class="card-title activator">{{ task.title }}<i class="material-icons right">close</i></span>
+								<span class="card-title activator"><b>{{ task.title }}</b><i class="material-icons right">close</i></span>
 								<p>Form goes here</p>
 							</div>
 						</div>
@@ -43,14 +43,14 @@
 					<div class="col s12" ng-repeat="task in tasks">
 						<div class="card" ng-if="task.status == 'done'">
 							<div class="card-content flow-text">
-								<span class="card-title"><strike>{{ task.title }}</strike></span>
+								<span class="card-title"><strike><b>{{ task.title }}</b></strike></span>
 								<p><strike>{{ task.description }}</strike></p>
 							</div>
 							<div class="card-action green darken-2">
 								<a href="" class="white-text waves-effect waves-red btn-flat" ng-click="deleteTask(task.task_id)">Delete</a>
 							</div>
 							<div class="card-reveal">
-								<span class="card-title activator">{{ task.title }}<i class="material-icons right">close</i></span>
+								<span class="card-title activator"><b>{{ task.title }}</b><i class="material-icons right">close</i></span>
 								<p>Form goes here</p>
 							</div>
 						</div>
