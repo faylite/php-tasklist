@@ -6,6 +6,6 @@ class HomeController
 {
 	public function index($response)
 	{
-		echo 'Home';
+		require ROOT_DIR . '/resources/templates/home.template.php';
 	}
 }
