@@ -42,4 +42,8 @@ $container['HomeController'] = function($container) {
 	return new \Faylite\TaskList\Controllers\HomeController($container);
 };
 
+$container['TasksApi'] = function($container) {
+	return new \Faylite\TaskList\Api\TasksApi();
+};
+
 require __DIR__ . '/../src/routes.php';
