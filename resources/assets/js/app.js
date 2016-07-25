@@ -15,10 +15,9 @@ app.controller('TasksController', function($scope, $http) {
 	// Deletes the task with the requested ID
 	$scope.deleteTask = function(taskID) {
 		$http({
-			method: 'POST',
-			url: '/api/v1/tasks',
+			method: 'DELETE',
+			url: '/api/v1/tasks/' + taskID,
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: $.param({ action: 'delete', id: taskID })
 		}).then(function successCallback(response) {
 			Materialize.toast('Task deleted!', 4000);
 			$scope.updateList();
@@ -26,12 +25,12 @@ app.controller('TasksController', function($scope, $http) {
 	};
 	
 	// Updates a task with the new specified title and description
-	$scope.editTask = function(taskTitle, taskDescription) {
+	$scope.editTask = function(taskID, taskTitle, taskDescription) {
 		$http({
 			method: 'POST',
-			url: '/api/v1/tasks',
+			url: '/api/v1/tasks/' + taskID,
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: $.param({ action: 'update', title: taskTitle, description: taskDescription })
+			data: $.param({ title: taskTitle, description: taskDescription })
 		}).then(function successCallback(response) {
 			Materialize.toast('Task updated!', 4000);
 			$scope.updateList();
@@ -41,16 +40,13 @@ app.controller('TasksController', function($scope, $http) {
 	// Marks a task as done
 	$scope.markDone = function(taskID) {
 		$http({
-			method: 'POST',
-			url: '/api/v1/tasks',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			data: $.param({ action: 'done', id: taskID })
+			method: 'PUT',
+			url: '/api/v1/tasks/' + taskID + '/done',
 		}).then(function successCallback(response) {
 			Materialize.toast('Marked as done!', 4000);
 			$scope.updateList();
 		});
 	}
-	
 	
 	// Listener for update event from other controllers
 	$scope.$on('update', function(event, args) { $scope.updateList(); });
@@ -64,7 +60,7 @@ app.controller('NewTaskController', function($scope, $rootScope, $http) {
 	$scope.createTask = function() {
 		$http({
 			method: 'POST',
-			url: '/api/v1/tasks',
+			url: '/api/v1/tasks/create',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			data: $.param({ action: 'create', title: $scope.title, description: $scope.description })
 		}).then(function successCallback(response) {
