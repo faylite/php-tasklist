@@ -92,7 +92,7 @@
 			</div>
 			<div class="footer-copyright">
 				<div class="container">
-					&copy 2016 Faylite
+					&copy Faylite 2016
 					<a class="grey-text text-lighten-4 right" href="https://github.com/faylite">Github</a>
 				</div>
 			</div>
