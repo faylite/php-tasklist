@@ -1,0 +1,8 @@
+[Config]
+error_reporting = true
+[Database]
+username = "user"
+password = "pass"
+database = "tasks_db"
+host = "localhost"
+
