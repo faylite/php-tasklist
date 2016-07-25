@@ -2,9 +2,9 @@
 
 namespace Faylite\TaskList\Controllers;
 
-class HomeController
+class HomeController extends Controller
 {
-	public function index($response)
+	public function index($request, $response)
 	{
 		require ROOT_DIR . '/resources/templates/home.template.php';
 	}
