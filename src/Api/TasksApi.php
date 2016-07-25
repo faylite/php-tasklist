@@ -7,38 +7,6 @@ use Faylite\TaskList\Models\TasksModel;
 
 class TasksApi
 {
-	public function handle()
-	{
-		// Switch request method to use correct response
-		switch ($_SERVER['REQUEST_METHOD'])
-		{
-		case 'GET':
-			$this->get();
-			break;
-		case 'POST':
-			if (isset($_POST['action']))
-			{
-				if ($_POST['action'] == 'delete')
-					$this->delete();
-				elseif ($_POST['action'] == 'create')
-					$this->post();
-				elseif ($_POST['action'] == 'update')
-					$this->put();
-				elseif ($_POST['action'] == 'done')
-					$this->markDone();
-				else {
-					header('HTTP/1.1 400 Bad Request');
-					die();
-				}
-			}
-			else {
-				header('HTTP/1.1 400 Bad Request');
-				die();
-			}
-			break;
-		}
-	}
-
 	public function get()
 	{
 		$tasksModel = new TasksModel();
@@ -57,23 +25,23 @@ class TasksApi
 		$tasksModel->postData($data);
 	}
 
-	public function markDone()
+	public function markDone($request, $response)
 	{
 		$tasksModel = new TasksModel();
-		$tasksModel->markDone($_POST['id']);
+		$tasksModel->markDone($request->getAttribute('id'));
 	}
 
-	public function delete()
+	public function delete($request, $response)
 	{
 		$tasksModel = new TasksModel();
-		$tasksModel->deleteData($_POST['id']);
+		$tasksModel->deleteData($request->getAttribute('id'));
 	}
 
-	public function put()
+	public function update()
 	{
 		$tasksModel = new TasksModel();
 		$data = array(
-			'id' => $_POST['id'],
+			'id' => $response->getAttribute('id'),
 			'title' => $_POST['title'],
 			'description' => $_POST['description']
 		);
